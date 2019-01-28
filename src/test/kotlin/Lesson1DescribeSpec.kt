@@ -3,7 +3,7 @@ import io.kotlintest.matchers.numerics.shouldBeLessThan
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.DescribeSpec
 
-class BasicsSpec : DescribeSpec({
+class BasicsDescribeSpec : DescribeSpec({
     describe("Checks on Kotlin basics implementations") {
         context("functions") {
             it("sum1 and sum2 works the same") {
@@ -82,33 +82,3 @@ class BasicsSpec : DescribeSpec({
         }
     }
 })
-
-fun sum1(a: Int, b: Int): Int {
-    return a + b
-}
-
-fun sum2(a: Int, b: Int) = a + b
-
-fun maxOf(a: Int, b: Int) = if (a > b) a else b
-
-fun minOf(a: Double, b: Double): Any {
-    if (a < b) return a
-    return Unit
-}
-
-fun describe(obj: Any): String =
-        when (obj) {
-            1 -> "One"
-            "Hello" -> "Greeting"
-            is Long -> "Long"
-            !is String -> "Not a string"
-            else -> "Unknown"
-        }
-
-fun count(list: ArrayList<String>): Int {
-    var counter = 0
-    for (i in list) {
-        counter += 1
-    }
-    return counter
-}
