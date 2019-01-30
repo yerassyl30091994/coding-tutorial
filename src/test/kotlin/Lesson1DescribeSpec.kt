@@ -60,6 +60,10 @@ class BasicsDescribeSpec : DescribeSpec({
             it("") {
                 minOf(1, 2)
             }
+
+            it(""){
+//                minOf1(2,7,9,6,0) shouldBe 0
+            }
         }
 
         // Write minOff function

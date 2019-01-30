@@ -1,6 +1,9 @@
 import io.kotlintest.matchers.collections.shouldContain
-import io.kotlintest.matchers.numerics.shouldBeLessThan
+import io.kotlintest.matchers.numerics.*
+import io.kotlintest.should
 import io.kotlintest.shouldBe
+import io.kotlintest.shouldNot
+import io.kotlintest.shouldNotBe
 import io.kotlintest.specs.FeatureSpec
 
 class BasicsFeatureSpec : FeatureSpec({
@@ -12,7 +15,19 @@ class BasicsFeatureSpec : FeatureSpec({
             sum1(a, b) shouldBeLessThan 4
             sum1(0, 3) shouldBe 3
             sum1(-1, 1) shouldBe 0
+
+//            Домашнее задание
+            sum1(a,b) shouldBeGreaterThan 2 // больше
+            sum1(a,b) shouldBeGreaterThanOrEqual 2 // больше или равно
+            sum1(a,b) shouldNotBeGreaterThanOrEqual 4 // меньше
+            sum1(a,b) shouldBeInRange 1..5 // диапазон
+            sum1(a,b) shouldNotBeInRange 4..10 // не входит в диапазон
+            sum1(a,b) shouldNotBe 1
+
             // Add greater less checks
+
+//            Домашнее задание
+            minOf1(6,25,80,5,12) shouldBe  5 // тип получился Unit
         }
     }
 
@@ -89,9 +104,17 @@ fun sum2(a: Int, b: Int) = a + b
 
 fun maxOf(a: Int, b: Int) = if (a > b) a else b
 
+
 fun minOf(a: Double, b: Double): Any {
     if (a < b) return a
     return Unit
+
+}
+
+//Домашнее задание
+fun minOf1(n1:Int, n2:Int, n3:Int, n4:Int, n5 : Int) : Any {
+    val list = listOf(n1,n2, n3, n4,n5)
+       return println(list.min())
 }
 
 fun describe(obj: Any): String =
