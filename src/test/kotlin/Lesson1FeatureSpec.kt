@@ -17,8 +17,8 @@ class BasicsFeatureSpec : FeatureSpec({
             sum1(0, 3) shouldBe 3
             sum1(-1, 1) shouldBe 0
 
-            
-            // Add greater less checks
+
+            // Add greater less checks!
             sum1(a,b) shouldBeGreaterThan 2 // больше
             sum1(a,b) shouldBeGreaterThanOrEqual 2 // больше или равно
             sum1(a,b) shouldNotBeGreaterThanOrEqual 4 // меньше
