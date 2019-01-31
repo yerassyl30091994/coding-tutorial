@@ -5,6 +5,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.shouldNot
 import io.kotlintest.shouldNotBe
 import io.kotlintest.specs.FeatureSpec
+import java.util.*
 
 class BasicsFeatureSpec : FeatureSpec({
     feature("functions") {
@@ -26,8 +27,8 @@ class BasicsFeatureSpec : FeatureSpec({
 
             // Add greater less checks
 
-//            Домашнее задание
-            minOf1(6,25,80,5,12) shouldBe  5 // тип получился Unit
+
+
         }
     }
 
@@ -77,6 +78,13 @@ class BasicsFeatureSpec : FeatureSpec({
     }
 
     // Write minOff function
+    feature(""){
+        scenario("returns min"){
+            minOf1(6,25,80,5,12) shouldBe  5
+        }
+    }
+
+
 
     feature("when expression") {
         describe(1) shouldBe "One"
@@ -111,11 +119,13 @@ fun minOf(a: Double, b: Double): Any {
 
 }
 
-//Домашнее задание
-fun minOf1(n1:Int, n2:Int, n3:Int, n4:Int, n5 : Int) : Any {
+fun minOf1(n1:Int, n2:Int, n3:Int, n4:Int, n5 : Int) : Int? {
     val list = listOf(n1,n2, n3, n4,n5)
-       return println(list.min())
+    return list.min()
 }
+
+
+
 
 fun describe(obj: Any): String =
         when (obj) {

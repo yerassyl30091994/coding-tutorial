@@ -61,12 +61,15 @@ class BasicsDescribeSpec : DescribeSpec({
                 minOf(1, 2)
             }
 
-            it(""){
-//                minOf1(2,7,9,6,0) shouldBe 0
-            }
+
         }
 
         // Write minOff function
+context(""){
+    it("return min"){
+            minOf1(2,7,9,6,0) shouldBe 0
+    }
+}
 
         context("when expression") {
             describe(1) shouldBe "One"
