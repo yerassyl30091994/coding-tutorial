@@ -17,17 +17,14 @@ class BasicsFeatureSpec : FeatureSpec({
             sum1(0, 3) shouldBe 3
             sum1(-1, 1) shouldBe 0
 
-//            Домашнее задание
+            
+            // Add greater less checks
             sum1(a,b) shouldBeGreaterThan 2 // больше
             sum1(a,b) shouldBeGreaterThanOrEqual 2 // больше или равно
             sum1(a,b) shouldNotBeGreaterThanOrEqual 4 // меньше
             sum1(a,b) shouldBeInRange 1..5 // диапазон
             sum1(a,b) shouldNotBeInRange 4..10 // не входит в диапазон
             sum1(a,b) shouldNotBe 1
-
-            // Add greater less checks
-
-
 
         }
     }
@@ -78,7 +75,7 @@ class BasicsFeatureSpec : FeatureSpec({
     }
 
     // Write minOff function
-    feature(""){
+    feature("finding the minimum value"){
         scenario("returns min"){
             minOf1(6,25,80,5,12) shouldBe  5
         }
@@ -119,6 +116,7 @@ fun minOf(a: Double, b: Double): Any {
 
 }
 
+//Home work - minOf function
 fun minOf1(n1:Int, n2:Int, n3:Int, n4:Int, n5 : Int) : Int? {
     val list = listOf(n1,n2, n3, n4,n5)
     return list.min()
