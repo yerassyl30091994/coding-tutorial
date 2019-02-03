@@ -68,7 +68,8 @@ class BasicsDescribeSpec : DescribeSpec({
         // Write minOff function
         context("") {
             it("return min") {
-                minOf1(2, 7, 9, 6, 0) shouldBe 0
+                val list = listOf(5,6,7,8,9)
+                minOf1(list) shouldBe 5
             }
         }
 

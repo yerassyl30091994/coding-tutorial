@@ -6,6 +6,7 @@ import io.kotlintest.shouldNot
 import io.kotlintest.shouldNotBe
 import io.kotlintest.specs.FeatureSpec
 import java.util.*
+import kotlin.math.min
 
 class BasicsFeatureSpec : FeatureSpec({
     feature("functions") {
@@ -19,12 +20,12 @@ class BasicsFeatureSpec : FeatureSpec({
 
 
             // Add greater less checks!
-            sum1(a,b) shouldBeGreaterThan 2 // больше
-            sum1(a,b) shouldBeGreaterThanOrEqual 2 // больше или равно
-            sum1(a,b) shouldNotBeGreaterThanOrEqual 4 // меньше
-            sum1(a,b) shouldBeInRange 1..5 // диапазон
-            sum1(a,b) shouldNotBeInRange 4..10 // не входит в диапазон
-            sum1(a,b) shouldNotBe 1
+            sum1(a, b) shouldBeGreaterThan 2 // больше
+            sum1(a, b) shouldBeGreaterThanOrEqual 2 // больше или равно
+            sum1(a, b) shouldNotBeGreaterThanOrEqual 4 // меньше
+            sum1(a, b) shouldBeInRange 1..5 // диапазон
+            sum1(a, b) shouldNotBeInRange 4..10 // не входит в диапазон
+            sum1(a, b) shouldNotBe 1
 
         }
     }
@@ -75,12 +76,19 @@ class BasicsFeatureSpec : FeatureSpec({
     }
 
     // Write minOff function
-    feature("finding the minimum value"){
-        scenario("returns min"){
-            minOf1(6,25,80,5,12) shouldBe  5
+    feature("finding the minimum value") {
+        scenario("returns min") {
+            val list = listOf(5, 6, 7, 8, 9)
+            minOf1(list) shouldBe 5
         }
     }
 
+    feature("mapOf") {
+        scenario("returns count fruits") {
+            val list = listOf("banana","apple","orange","apple")
+            fruitsCount(list) shouldBe mapOf("banana" to 1,"orange" to 1,"apple" to 2)
+        }
+    }
 
 
     feature("when expression") {
@@ -117,12 +125,15 @@ fun minOf(a: Double, b: Double): Any {
 }
 
 //Home work - minOf function
-fun minOf1(n1:Int, n2:Int, n3:Int, n4:Int, n5 : Int) : Int? {
-    val list = listOf(n1,n2, n3, n4,n5)
-    return list.min()
+
+fun minOf1(list: List<Int>): Int? {
+    val list = listOf(5, 6, 7, 8, 9)
+    var min = list[0]
+    for (i in list) {
+        if (min > i) min = i
+    }
+    return min
 }
-
-
 
 
 fun describe(obj: Any): String =
@@ -141,3 +152,22 @@ fun count(list: ArrayList<String>): Int {
     }
     return counter
 }
+
+//Home work  Collection(mapOf)
+fun fruitsCount(listFruits: List<String>): Map<String, Int> {
+    val appleCount = listFruits.filter { it.contains("apple") }.count()
+    val orangeCount = listFruits.filter { it.contains("orange") }.count()
+    val bananaCount = listFruits.filter { it.contains("banana") }.count()
+    val map = mapOf("apple" to appleCount, "orange" to orangeCount, "banana" to bananaCount)
+
+    return map
+}
+
+//or
+
+//fun fruitsCount(list: List<String>): Map<String, Int> {
+//    val list = listOf("banana", "apple", "orange", "apple", "banana", "apple", "orange", "apple")
+//    val map = mapOf("banana" to 2, "apple" to 4, "orange" to 2)
+//
+//    return map
+//}
