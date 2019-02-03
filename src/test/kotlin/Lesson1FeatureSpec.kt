@@ -154,10 +154,10 @@ fun count(list: ArrayList<String>): Int {
 }
 
 //Home work  Collection(mapOf)
-fun fruitsCount(listFruits: List<String>): Map<String, Int> {
-    val appleCount = listFruits.filter { it.contains("apple") }.count()
-    val orangeCount = listFruits.filter { it.contains("orange") }.count()
-    val bananaCount = listFruits.filter { it.contains("banana") }.count()
+fun fruitsCount(list: List<String>): Map<String, Int> {
+    val appleCount = list.filter { it.contains("apple") }.count()
+    val orangeCount = list.filter { it.contains("orange") }.count()
+    val bananaCount = list.filter { it.contains("banana") }.count()
     val map = mapOf("apple" to appleCount, "orange" to orangeCount, "banana" to bananaCount)
 
     return map
