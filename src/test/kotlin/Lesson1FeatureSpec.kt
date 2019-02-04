@@ -85,8 +85,10 @@ class BasicsFeatureSpec : FeatureSpec({
 
     feature("mapOf") {
         scenario("returns count fruits") {
-            val list = listOf("banana","apple","orange","apple")
-            fruitsCount(list) shouldBe mapOf("banana" to 1,"orange" to 1,"apple" to 2)
+            val list = listOf("banana","apple","orange","apple","banana","orange","apple")
+            list.count() shouldBe 7
+            fruitsCount(list).get("banana") shouldBe 2
+
         }
     }
 
@@ -153,21 +155,16 @@ fun count(list: ArrayList<String>): Int {
     return counter
 }
 
-//Home work  Collection(mapOf)
+//Home work 2
 fun fruitsCount(list: List<String>): Map<String, Int> {
-    val appleCount = list.filter { it.contains("apple") }.count()
-    val orangeCount = list.filter { it.contains("orange") }.count()
-    val bananaCount = list.filter { it.contains("banana") }.count()
-    val map = mapOf("apple" to appleCount, "orange" to orangeCount, "banana" to bananaCount)
-
+    val map = mutableMapOf<String,Int>()
+    for (fruit in list) {
+        if(map.containsKey(fruit)){
+            map[fruit] = map.getValue(fruit) + 1
+        }else{
+            map[fruit] = 1
+        }
+    }
     return map
 }
 
-//or 
-
-//fun fruitsCount(list: List<String>): Map<String, Int> {
-//    val list = listOf("banana", "apple", "orange", "apple", "banana", "apple", "orange", "apple")
-//    val map = mapOf("banana" to 2, "apple" to 4, "orange" to 2)
-//
-//    return map
-//}
