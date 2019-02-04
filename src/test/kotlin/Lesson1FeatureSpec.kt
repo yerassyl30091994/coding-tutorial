@@ -163,7 +163,7 @@ fun fruitsCount(list: List<String>): Map<String, Int> {
     return map
 }
 
-//or
+//or 2-nd variant
 
 //fun fruitsCount(list: List<String>): Map<String, Int> {
 //    val list = listOf("banana", "apple", "orange", "apple", "banana", "apple", "orange", "apple")
