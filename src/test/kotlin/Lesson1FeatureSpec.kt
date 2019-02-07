@@ -97,8 +97,8 @@ class BasicsFeatureSpec : FeatureSpec({
 
     feature("vararg") {
         scenario("") {
-            val values = intArrayOf(6,8,7,3,9,4)
-            minOf2(*values) shouldBe 3
+
+            minOf2() shouldBe null
         }
     }
 
@@ -179,12 +179,21 @@ fun fruitsCount(list: List<String>): Map<String, Int> {
 }
 
 //Home work 3 (vararg)
-fun minOf2(vararg values: Int):Int?{
-    var min = values[0]
-    for (someValue in values){
-        if(min > someValue){
-            min = someValue
+fun minOf2(vararg values: Int): Int? {
+    var min: Int = 0
+
+    if (values.size < 1) {
+        println("Нету входных элементов")
+        return null
+    } else {
+        min = values[0]
+
+        for (someValue in values) {
+            if (min > someValue) {
+                min = someValue
+            }
         }
     }
     return min
 }
+
