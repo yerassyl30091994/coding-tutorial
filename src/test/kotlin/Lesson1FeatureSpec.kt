@@ -85,10 +85,20 @@ class BasicsFeatureSpec : FeatureSpec({
 
     feature("mapOf") {
         scenario("returns count fruits") {
-            val list = listOf("banana","apple","orange","apple","banana","orange","apple")
+            val list = listOf("banana", "apple", "orange", "apple", "banana", "orange", "apple")
+
             list.count() shouldBe 7
             fruitsCount(list).get("banana") shouldBe 2
+            fruitsCount(list).get("orange") shouldBe 2
+            fruitsCount(list).get("apple") shouldBe 3
+        }
+    }
 
+
+    feature("vararg") {
+        scenario("") {
+            val values = intArrayOf(6,8,7,3,9,4)
+            minOf2(*values) shouldBe 3
         }
     }
 
@@ -157,14 +167,24 @@ fun count(list: ArrayList<String>): Int {
 
 //Home work 2
 fun fruitsCount(list: List<String>): Map<String, Int> {
-    val map = mutableMapOf<String,Int>()
+    val map = mutableMapOf<String, Int>()
     for (fruit in list) {
-        if(map.containsKey(fruit)){
+        if (map.containsKey(fruit)) {
             map[fruit] = map.getValue(fruit) + 1
-        }else{
+        } else {
             map[fruit] = 1
         }
     }
     return map
 }
 
+//Home work 3 (vararg)
+fun minOf2(vararg values: Int):Int?{
+    var min = values[0]
+    for (someValue in values){
+        if(min > someValue){
+            min = someValue
+        }
+    }
+    return min
+}
