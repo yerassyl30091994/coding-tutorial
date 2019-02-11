@@ -83,6 +83,15 @@ class BasicsFeatureSpec : FeatureSpec({
         }
     }
 
+    feature("Method releaseTesting") {
+        scenario("") {
+            val day = 2
+            val qa = QA(day,"Yerassyl","QA Mobile")
+            val arr = arrayListOf("registration","redesign","addButton","addEditText","addTextView","addImageView","WebView")
+            qa.myFun(arr) shouldBe false
+        }
+    }
+
     feature("mapOf") {
         scenario("returns count fruits") {
             val list = listOf("banana", "apple", "orange", "apple", "banana", "orange", "apple")
@@ -139,7 +148,6 @@ fun minOf(a: Double, b: Double): Any {
 //Home work - minOf function
 
 fun minOf1(list: List<Int>): Int? {
-    val list = listOf(5, 6, 7, 8, 9)
     var min = list[0]
     for (i in list) {
         if (min > i) min = i
@@ -196,4 +204,23 @@ fun minOf2(vararg values: Int): Int? {
     }
     return min
 }
+
+
+//Home work 3 *
+open class Engineer(val name: String, val department: String)
+
+class QA(val day : Int, name: String, department: String) : Engineer(name,department){
+    val inputDay = day
+    var term = true
+    var amount = 0
+
+    fun myFun(arrayList: ArrayList<String>):Boolean{
+        amount = arrayList.size
+        if (amount/2 > inputDay) term = false
+
+        return term
+
+    }
+}
+
 
