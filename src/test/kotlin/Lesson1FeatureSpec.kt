@@ -87,18 +87,18 @@ class BasicsFeatureSpec : FeatureSpec({
 
     feature("Method releaseTesting") {
         var day = 2
-        val qa = QA(day,"Yerassyl","QA Mobile")
-        val arr = arrayListOf("registration","redesign","addButton","addEditText","addTextView","addImageView","WebView")
+        val qa = QA(day, "Yerassyl", "QA Mobile")
+        val arr = arrayListOf("registration", "redesign", "addButton", "addEditText", "addTextView", "addImageView", "WebView")
 
         scenario("day for release equals negative value") {
             day = -2
-            val qa = QA(day,"Yerassyl","QA Mobile")
+            val qa = QA(day, "Yerassyl", "QA Mobile")
             qa.releaseTesting(arr) shouldBe false
         }
 
         scenario("0 days for release") {
             day = 0
-            val qa = QA(day,"Yerassyl","QA Mobile")
+            val qa = QA(day, "Yerassyl", "QA Mobile")
             qa.releaseTesting(arr) shouldBe false
         }
 
@@ -108,17 +108,17 @@ class BasicsFeatureSpec : FeatureSpec({
 
         scenario("day for test = count of features for release") {
             day = 7
-            val qa = QA(day,"Yerassyl","QA Mobile")
+            val qa = QA(day, "Yerassyl", "QA Mobile")
             qa.releaseTesting(arr) shouldBe true
         }
 
         scenario("day for test > count of features for release") {
             day = 10
-            val qa = QA(day,"Yerassyl","QA Mobile")
+            val qa = QA(day, "Yerassyl", "QA Mobile")
             qa.releaseTesting(arr) shouldBe true
         }
 
-        scenario("Type of result"){
+        scenario("Type of result") {
             qa.releaseTesting(arr).shouldBeTypeOf<Boolean>()
         }
     }
@@ -240,10 +240,11 @@ fun minOf2(vararg values: Int): Int? {
 //Home work 3 *
 open class Engineer(val name: String, val department: String)
 
-class QA(val day : Int, name: String, department: String) : Engineer(name,department){
+class QA(val day: Int, name: String, department: String) : Engineer(name, department) {
+    fun releaseTesting(arrayList: ArrayList<String>): Boolean {
+        val amount = arrayList.size
 
-    fun releaseTesting(arrayList: ArrayList<String>):Boolean{
-       return  arrayList.size/2 < this.day
+        return amount / 2 < this.day
     }
 }
 
