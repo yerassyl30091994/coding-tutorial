@@ -1,5 +1,7 @@
+import io.kotlintest.matchers.boolean.shouldBeTrue
 import io.kotlintest.matchers.collections.shouldContain
 import io.kotlintest.matchers.numerics.*
+import io.kotlintest.matchers.types.shouldBeTypeOf
 import io.kotlintest.should
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldNot
@@ -84,11 +86,40 @@ class BasicsFeatureSpec : FeatureSpec({
     }
 
     feature("Method releaseTesting") {
-        scenario("") {
-            val day = 2
+        var day = 2
+        val qa = QA(day,"Yerassyl","QA Mobile")
+        val arr = arrayListOf("registration","redesign","addButton","addEditText","addTextView","addImageView","WebView")
+
+        scenario("day for release equals negative value") {
+            day = -2
             val qa = QA(day,"Yerassyl","QA Mobile")
-            val arr = arrayListOf("registration","redesign","addButton","addEditText","addTextView","addImageView","WebView")
-            qa.myFun(arr) shouldBe false
+            qa.releaseTesting(arr) shouldBe false
+        }
+
+        scenario("0 days for release") {
+            day = 0
+            val qa = QA(day,"Yerassyl","QA Mobile")
+            qa.releaseTesting(arr) shouldBe false
+        }
+
+        scenario("day for test < count of features for release") {
+            qa.releaseTesting(arr) shouldBe false
+        }
+
+        scenario("day for test = count of features for release") {
+            day = 7
+            val qa = QA(day,"Yerassyl","QA Mobile")
+            qa.releaseTesting(arr) shouldBe true
+        }
+
+        scenario("day for test > count of features for release") {
+            day = 10
+            val qa = QA(day,"Yerassyl","QA Mobile")
+            qa.releaseTesting(arr) shouldBe true
+        }
+
+        scenario("Type of result"){
+            qa.releaseTesting(arr).shouldBeTypeOf<Boolean>()
         }
     }
 
@@ -210,16 +241,9 @@ fun minOf2(vararg values: Int): Int? {
 open class Engineer(val name: String, val department: String)
 
 class QA(val day : Int, name: String, department: String) : Engineer(name,department){
-    val inputDay = day
-    var term = true
-    var amount = 0
 
-    fun myFun(arrayList: ArrayList<String>):Boolean{
-        amount = arrayList.size
-        if (amount/2 > inputDay) term = false
-
-        return term
-
+    fun releaseTesting(arrayList: ArrayList<String>):Boolean{
+       return  arrayList.size/2 < this.day
     }
 }
 
