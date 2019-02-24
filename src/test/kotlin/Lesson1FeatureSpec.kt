@@ -159,6 +159,14 @@ class BasicsFeatureSpec : FeatureSpec({
             uniqueLetter("double") shouldBe true
             uniqueLetter("integer") shouldBe false
             uniqueLetter("double").shouldBeTypeOf<Boolean>()
+
+            uniqueLetter1("double") shouldBe true
+            uniqueLetter1("integer") shouldBe false
+            uniqueLetter1("double").shouldBeTypeOf<Boolean>()
+
+            uniqueLetter2("double") shouldBe true
+            uniqueLetter2("integer") shouldBe false
+            uniqueLetter2("double").shouldBeTypeOf<Boolean>()
         }
     }
 
@@ -283,6 +291,24 @@ fun uniqueLetter(str: String):Boolean {
         if(charStr.count{it==i}>1){
             return false
         }
+    }
+    return true
+}
+
+fun uniqueLetter1(str: String): Boolean {
+    for (i in 0 until str.length) {
+        if (str.substring(i + 1).contains(str[i]))
+            return false
+    }
+    return true
+}
+
+
+fun uniqueLetter2(str: String): Boolean {
+    for (i in 0 until str.length - 1) {
+        for (j in i + 1 until str.length)
+            if (str[i] == str[j])
+                return false
     }
     return true
 }
