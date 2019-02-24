@@ -1,3 +1,4 @@
+import com.github.javafaker.Bool
 import io.kotlintest.matchers.boolean.shouldBeTrue
 import io.kotlintest.matchers.collections.shouldContain
 import io.kotlintest.matchers.numerics.*
@@ -142,6 +143,25 @@ class BasicsFeatureSpec : FeatureSpec({
         }
     }
 
+    feature("rotation") {
+        scenario("") {
+
+            areRotations("swift","ftswi") shouldBe true
+            areRotations("swift","FTswi") shouldBe true
+            areRotations("swift","FTswi").shouldBeTypeOf<Boolean>()
+
+        }
+    }
+
+    feature("unique letters") {
+        scenario("") {
+
+            uniqueLetter("double") shouldBe true
+            uniqueLetter("integer") shouldBe false
+            uniqueLetter("double").shouldBeTypeOf<Boolean>()
+        }
+    }
+
 
     feature("when expression") {
         describe(1) shouldBe "One"
@@ -248,4 +268,22 @@ class QA(val day: Int, name: String, department: String) : Engineer(name, depart
     }
 }
 
+
+// Home work
+fun areRotations(str1: String, str2: String): Boolean {
+
+    return str1.length == str2.length &&
+            (str1 + str1).indexOf(str2, 0, ignoreCase = true) != -1
+}
+
+
+fun uniqueLetter(str: String):Boolean {
+    val charStr = str.toCharArray()
+    for (i in charStr){
+        if(charStr.count{it==i}>1){
+            return false
+        }
+    }
+    return true
+}
 
