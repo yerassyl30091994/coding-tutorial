@@ -14,8 +14,10 @@ class ApiSpec : FeatureSpec({
     feature("posts") {
         FuelManager.instance.basePath = "http://localhost:3000"
 
-        val postsCount = 106
-        val newPost = Post(0.0, postsCount + 1.0, "new one", "new one")
+        val postIdCount = 3
+        val postsCount = 3
+        val newPost = Post(0.0, postsCount + 1.0, "new one", "new one",postIdCount + 1.0)
+
 
         scenario("gets all posts").config(enabled = false) {
             val (request, response, result) = Fuel.get("/posts")
@@ -42,8 +44,24 @@ class ApiSpec : FeatureSpec({
             result.component1() shouldBe newPost
         }
 
-        scenario("deletes the last post") {
+        scenario("deletes the last post").config(enabled = false) {
             val (_, response, result) = "/posts/105.0"
+                    .httpDelete()
+                    .responseString()
+            response.statusCode shouldBe 200
+        }
+
+//        Home work
+
+        scenario("adds new comments").config(enabled = false){
+            val (_, response, _) = "/comments"
+                    .httpPost(listOf("id" to newPost.id,  "body" to newPost.body, "postId" to newPost.postId ))
+                    .responseObject<Post>()
+            response.statusCode shouldBe 201
+        }
+
+        scenario("deletes the third comment"){
+            val (_, response, result) = "/comments/2.0"
                     .httpDelete()
                     .responseString()
             response.statusCode shouldBe 200
